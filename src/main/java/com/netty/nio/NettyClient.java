@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 
 public class NettyClient {
     private static Logger log = LoggerFactory.getLogger(ServerHandl.class.getName());
+    private  Channel channel;
     private String host;
     private int port;
 
@@ -41,11 +42,8 @@ public class NettyClient {
             bootstrap.option(ChannelOption.TCP_NODELAY, true);
             bootstrap.handler(new ClientInitializer());
             //绑定服务器等待绑定完成，调用sync()方法会阻塞直到服务器完成绑定
-            Channel ch = bootstrap.connect(host,port).sync().channel();
-
-            ChannelFuture lastWriteFuture = null;
-            BufferedReader in = new BufferedReader(new
-                    InputStreamReader(System.in));
+            Channel ch= bootstrap.connect(host,port).sync().channel();
+            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             for (;;) {
                 log.info("控制台---" + in.readLine());
                 String line = in.readLine();
@@ -69,7 +67,10 @@ public class NettyClient {
 
     public static void main(String[] args) {
 
-        new NettyClient("127.0.0.1",8888);
+        new NettyClient("127.0.0.1", 8888);
+
+
+
     }
 
 
