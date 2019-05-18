@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class ClientHandler extends SimpleChannelInboundHandler<Object> {
     private static Logger log = LoggerFactory.getLogger(ServerHandl.class.getName());
 
-    //零拷贝
+    //零拷贝 --待测试
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object arg1)throws Exception  {
         RandomAccessFile raf=null;

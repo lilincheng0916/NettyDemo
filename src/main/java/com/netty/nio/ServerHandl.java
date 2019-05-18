@@ -5,10 +5,14 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.DefaultFileRegion;
+import io.netty.handler.ssl.SslHandler;
+import io.netty.handler.stream.ChunkedFile;
 import io.netty.handler.timeout.IdleStateEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.RandomAccessFile;
 import java.net.InetSocketAddress;
 //该注解表示可以同时被多个channel安全共享使用，保证线程安全
 @ChannelHandler.Sharable
@@ -17,6 +21,9 @@ import java.net.InetSocketAddress;
  */
 public class ServerHandl extends ChannelInboundHandlerAdapter {
     private static Logger log = LoggerFactory.getLogger(ServerHandl.class.getName());
+
+
+
 
 
     /**
